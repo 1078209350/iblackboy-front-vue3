@@ -18,21 +18,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'  # 关键修改：指定 pnpm 缓存类型
-          cache-dependency-path: pnpm-lock.yaml  # 指定锁定文件路径
 
       # 3. 安装 pnpm
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-          run_install: false  # 禁用自动 install
-
-      # 4. 显式配置 PATH（关键步骤）
-      - name: Add pnpm to PATH
-        shell: bash
-        run: |
-         echo "$(pnpm store path --silent)/bin" >> $GITHUB_PATH
+      - name: Install PNPM
+        run: npm i -g pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
