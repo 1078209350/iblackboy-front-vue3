@@ -112,7 +112,7 @@ export default {
     register: '注册',
     checkPassword: '确认密码',
     login: '登录',
-    otherLogin: '其它登录方式',
+    otherLogin: '其它登录方式1111',
     remember: '记住我',
     hasUser: '已有账号？去登录',
     forgetPassword: '忘记密码',
