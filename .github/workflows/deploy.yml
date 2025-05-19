@@ -28,6 +28,12 @@ jobs:
           version: 8
           run_install: false  # 禁用自动 install
 
+      # 4. 显式配置 PATH（关键步骤）
+      - name: Add pnpm to PATH
+        shell: bash
+        run: |
+         echo "$(pnpm store path --silent)/bin" >> $GITHUB_PATH
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
