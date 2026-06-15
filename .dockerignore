@@ -1,0 +1,12 @@
+node_modules
+dist
+dist-dev
+dist-pro
+.git
+.DS_Store
+*.log
+coverage
+.vscode
+.idea
+Dockerfile.dev
+docker-compose.dev.yaml

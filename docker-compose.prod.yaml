@@ -1,0 +1,13 @@
+services:
+  frontend:
+    image: ${FRONTEND_IMAGE}
+    container_name: iblackboy-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    networks:
+      - iblackboy-net
+
+networks:
+  iblackboy-net:
+    external: true
