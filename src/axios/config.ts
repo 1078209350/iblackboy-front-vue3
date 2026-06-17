@@ -40,9 +40,10 @@ const defaultResponseInterceptors = (response: AxiosResponse) => {
     // 如果是文件流，直接过
     return response
   } else if (response.data.code === SUCCESS_CODE) {
+    // 适配后端返回格式，直接返回最外层的data
     return response.data
   } else {
-    ElMessage.error(response?.data?.message)
+    ElMessage.error(response?.data?.message || '请求失败')
     if (response?.data?.code === 401) {
       const userStore = useUserStoreWithOut()
       userStore.logout()

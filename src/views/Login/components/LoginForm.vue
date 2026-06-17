@@ -236,7 +236,12 @@ const signIn = async () => {
       const formData = await getFormData<UserType>()
 
       try {
-        const res = await loginApi(formData)
+        // 转换参数名适配后端：username -> name
+        const loginData = {
+          name: formData.username,
+          password: formData.password
+        }
+        const res = await loginApi(loginData)
 
         if (res) {
           // 是否记住我
@@ -249,7 +254,9 @@ const signIn = async () => {
             userStore.setLoginInfo(undefined)
           }
           userStore.setRememberMe(unref(remember))
-          userStore.setUserInfo(res.data)
+          // 后端返回格式：data.token 和 data.info
+          userStore.setToken(res.data.token)
+          userStore.setUserInfo(res.data.info)
           // 是否使用动态路由
           if (appStore.getDynamicRouter) {
             getRole()

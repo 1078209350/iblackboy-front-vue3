@@ -143,7 +143,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     server: {
       port: 4000,
       proxy: {
-        // 选项写法
+        // 本地开发：前端 /api/* 代理到后端 8000（去掉 /api 前缀，与 nginx 一致）
         '/api': {
           target: 'http://127.0.0.1:8000',
           changeOrigin: true,

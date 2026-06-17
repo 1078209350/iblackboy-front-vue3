@@ -5,14 +5,27 @@ interface RoleParams {
   roleName: string
 }
 
-export const loginApi = (data: UserType): Promise<IResponse<UserType>> => {
-  return request.post({ url: '/mock/user/login', data })
+// 登录接口 - 对接后端 /api/user/login (nginx 会去掉 /api 前缀)
+export const loginApi = (data: { name: string; password: string }): Promise<IResponse<any>> => {
+  return request.post({ url: '/api/user/login', data })
 }
 
+// 登出接口 - 对接后端 /api/user/logout
 export const loginOutApi = (): Promise<IResponse> => {
-  return request.get({ url: '/mock/user/loginOut' })
+  return request.post({ url: '/api/user/logout' })
 }
 
+// 获取用户信息 - 对接后端 /api/user/info
+export const getUserInfoApi = (): Promise<IResponse<any>> => {
+  return request.get({ url: '/api/user/info' })
+}
+
+// 注册接口 - 对接后端 /api/user/register
+export const registerApi = (data: { name: string; password: string; phone?: string }): Promise<IResponse<any>> => {
+  return request.post({ url: '/api/user/register', data })
+}
+
+// 保留原有接口结构，后续可根据需要调整
 export const getUserListApi = ({ params }: AxiosConfig) => {
   return request.get<{
     code: string
