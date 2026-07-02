@@ -278,9 +278,9 @@ const signIn = async () => {
 
 // 获取角色信息
 const getRole = async () => {
-  const formData = await getFormData<UserType>()
+  // 用登录接口返回的真实 roleName（admin/guest/...），而非登录用户名
   const params = {
-    roleName: formData.username
+    roleName: userStore.getUserInfo?.roleName || ''
   }
   const res =
     appStore.getDynamicRouter && appStore.getServerDynamicRouter

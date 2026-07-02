@@ -36,10 +36,11 @@ export const getUserListApi = ({ params }: AxiosConfig) => {
   }>({ url: '/mock/user/list', params })
 }
 
+// 获取菜单/路由 - 对接后端 /api/user/menu，按角色返回动态路由树
 export const getAdminRoleApi = (
   params: RoleParams
 ): Promise<IResponse<AppCustomRouteRecordRaw[]>> => {
-  return request.get({ url: '/mock/role/list', params })
+  return request.get({ url: '/api/user/menu', params })
 }
 
 export const getTestRoleApi = (params: RoleParams): Promise<IResponse<string[]>> => {
